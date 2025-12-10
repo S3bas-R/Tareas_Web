@@ -1,0 +1,373 @@
+/* 
+  DEFINICIÓN DE VARIABLES GLOBALES (CSS Custom Properties) 
+  Permite definir colores y valores reutilizables en todo el sitio.
+*/
+:root {
+  --primary-color: #6366f1;
+  /* Color principal (Indigo) */
+  --primary-hover: #4f46e5;
+  /* Color hover principal */
+  --secondary-color: #64748b;
+  /* Color secundario (Slate) */
+  --background-color: #f8fafc;
+  /* Fondo general de la página */
+  --card-bg: #ffffff;
+  /* Fondo de tarjetas */
+  --text-main: #1e293b;
+  /* Color texto principal */
+  --text-secondary: #64748b;
+  /* Color texto secundario */
+  --border-color: #e2e8f0;
+  /* Color de bordes tenues */
+  --success: #22c55e;
+  /* Color para estados de éxito */
+  --danger: #ef4444;
+  /* Color para estados de error/eliminar */
+
+  /* Sombras predefinidas para elevación */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  --radius: 12px;
+  /* Radio de borde estándar */
+}
+
+/* Estilos Generales del Body */
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  /* Tipografía moderna */
+  background-color: var(--background-color);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+/* Contenedor Raíz de React */
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  /* Centrado horizontal */
+  padding: 2rem;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+/* HEADER DEL SITIO */
+header {
+  text-align: center;
+  padding: 3rem 0;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, var(--primary-color), #818cf8);
+  /* Degradado */
+  color: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 3rem;
+  letter-spacing: -1px;
+}
+
+header p {
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+}
+
+/* MAIN CONTENT */
+main {
+  padding: 1rem 0;
+}
+
+/* LISTADO DE POSTS (GRID) */
+.posts-grid {
+  display: grid;
+  /* Grid responsiva: crea columnas automáticas mín 320px */
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* TARJETA DE POST INDIVIDUAL */
+.post-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  /* Transición suave para hover */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Barra superior decorativa en hover */
+.post-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--primary-color);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Efecto Hover en Tarjeta */
+.post-card:hover {
+  transform: translateY(-5px);
+  /* Elevar tarjeta */
+  box-shadow: var(--shadow-lg);
+}
+
+.post-card:hover::before {
+  opacity: 1;
+}
+
+.post-card h3 {
+  margin: 0 0 1rem;
+  color: var(--text-main);
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+.post-card p {
+  margin: 0 0 1.5rem;
+  color: var(--text-secondary);
+  flex-grow: 1;
+  /* Empuja el contenido hacia abajo */
+}
+
+/* LINK DE "VER DETALLE" */
+.post-link {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.post-link:hover {
+  color: var(--primary-hover);
+}
+
+/* BOTONES GLOBALES */
+.btn-primary,
+.btn-secondary,
+.btn-paginacion,
+.boton-volver,
+.btn-editar,
+.btn-eliminar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 1rem;
+  text-decoration: none;
+  gap: 0.5rem;
+}
+
+/* Estilo Botón Primario */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.4);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+/* Estilo Botón Secundario */
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #475569;
+}
+
+/* ESTILOS DETALLE POST */
+.detalle-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.detalle-post {
+  background: var(--card-bg);
+  padding: 3rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+
+.detalle-post h2 {
+  font-size: 2.5rem;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+/* Caja de Información del Autor */
+.autor {
+  background: #eff6ff;
+  border-left: 4px solid var(--primary-color);
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  border-radius: 0 8px 8px 0;
+  color: var(--text-main);
+}
+
+.contenido {
+  font-size: 1.2rem;
+  color: #334155;
+  line-height: 1.8;
+  margin: 2rem 0;
+}
+
+.acciones {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ESTILOS DE FORMULARIOS */
+.formulario-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: var(--card-bg);
+  padding: 3rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.formulario-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-main);
+  font-size: 2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  /* Asegura que el padding no exceda el width 100% */
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  /* Efecto focus ring */
+}
+
+/* SECCIÓN DE FILTROS */
+.filtro-container {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filtro-container .form-select {
+  max-width: 300px;
+}
+
+/* ESTILOS DE PAGINACIÓN */
+.paginacion {
+  margin-top: 3rem;
+  gap: 1.5rem;
+}
+
+.pagina-actual {
+  font-weight: bold;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.btn-paginacion {
+  background-color: white;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-paginacion:hover:not(:disabled) {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-paginacion:disabled {
+  border-color: #cbd5e1;
+  color: #cbd5e1;
+  background: transparent;
+}
+
+/* UTILIDADES Y ESTADOS */
+.spinner {
+  border-top-color: var(--primary-color);
+}
+
+.cargando,
+.error {
+  background: transparent;
+}
+
+.error {
+  color: var(--danger);
+  border: 1px solid #fca5a5;
+  background: #fef2f2;
+}
+
+/* Botones específicos */
+.btn-editar {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-eliminar {
+  background: var(--danger);
+  color: white;
+}
+
+.btn-eliminar:hover:not(:disabled) {
+  background: #dc2626;
+}
